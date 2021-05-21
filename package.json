@@ -1,0 +1,25 @@
+{
+  "name": "pizzaapp-back",
+  "version": "1.0.0",
+  "description": "Backend built with NodeJs for the pizzaapp application",
+  "main": "src/",
+  "scripts": {
+    "test": "npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sherlock28/pizzapp-back.git"
+  },
+  "keywords": [
+    "NodeJs",
+    "ExpressJs",
+    "MongoDB",
+    "jsonwebtoken"
+  ],
+  "author": "Rodolfo Cáceres",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sherlock28/pizzapp-back/issues"
+  },
+  "homepage": "https://github.com/sherlock28/pizzapp-back#readme"
+}
