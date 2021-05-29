@@ -3,6 +3,6 @@ module.exports = {
     getAllPizzas: require("./product/getAllPizzas.ctrl"),
   },
   usersCtrl: {
-    signIn: require("./users/signin.ctrl")
+    signIn: require("./users/signIn.ctrl")
   },
 };
