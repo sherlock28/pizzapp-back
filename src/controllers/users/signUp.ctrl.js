@@ -2,9 +2,10 @@ const { User } = require("../../models");
 const { encryptPassword } = require("../../libs");
 
 const signUp = async (req, res) => {
-  const { username, email, password } = req.body;
+  const { fullname, username, email, password } = req.body;
 
   const newUser = new User({
+    fullname,
     username,
     email,
     password,
