@@ -2,6 +2,7 @@ module.exports = {
   productCtrl: {
     getAllPizzas: require("./product/getAllPizzas.ctrl"),
     postPizza: require("./product/postPizza.ctrl"),
+    deleteProduct: require("./product/deletePizza.ctrl"),
   },
   usersCtrl: {
     signUp: require("./users/signUp.ctrl"),
