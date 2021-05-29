@@ -1,4 +1,4 @@
 module.exports = {
-  encryptPassword: require("./encrytpPass.libs"),
-  validatePassword: require("./validatePass.libs"),
+  encryptPassword: require("./encryptPassword.libs"),
+  validatePassword: require("./validatePassword.libs"),
 };
