@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { productCtrl } = require("../controllers");
+const { auth } = require("../middlewares");
 
 router.get("/product", productCtrl.getAllPizzas);
 router.get("/product/:id_product", productCtrl.getPizzaById);
