@@ -1,5 +1,19 @@
-const getAllPizzas = (req, res) => {
-    res.send('All pizzas');
+const { Product } = require("../../models");
+
+const getAllProducts = async (req, res) => {
+  try {
+    const products = await Product.find().lean();
+    res.json({
+      status: "Ok",
+      message: "List of all products",
+      data: {
+        products,
+      },
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ status: "Error", message: "Internal server error" });
+  }
 };
 
-module.exports = getAllPizzas;
+module.exports = getAllProducts;

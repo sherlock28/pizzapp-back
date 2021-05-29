@@ -2,7 +2,7 @@ const { cloudinary } = require("../../config");
 const { Product } = require("../../models");
 const fs = require("fs-extra");
 
-const postProjects = async (req, res) => {
+const postProduct = async (req, res) => {
   const { name, description, price } = req.body;
 
   try {
@@ -32,4 +32,4 @@ const postProjects = async (req, res) => {
   }
 };
 
-module.exports = postProjects;
+module.exports = postProduct;
