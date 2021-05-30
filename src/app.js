@@ -9,7 +9,7 @@ const app = express();
 require("./database");
 
 // settings
-app.set("port", process.env.PORT);
+app.set("port", process.env.PORT || 4000);
 
 // middlewares
 app.use(cors());
@@ -28,7 +28,7 @@ if (process.env.NODE_ENV === "development") {
 }
 
 // routes
-app.use("/api", require("./routes/product.routes"));
-app.use("/api", require("./routes/user.routes"));
+app.use("/api/v1", require("./routes/product.routes"));
+app.use("/api/v1", require("./routes/user.routes"));
 
 module.exports = app;
