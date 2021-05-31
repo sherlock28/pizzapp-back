@@ -3,7 +3,7 @@ version: "3"
 services: 
     api: 
         container_name: pizzapp_back
-        restart: always
+        restart: on-failure:10
         build: .
         ports:
             - "3001:4000"
