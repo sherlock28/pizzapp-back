@@ -5,7 +5,7 @@ const fs = require("fs-extra");
 const updateProduct = async (req, res) => {
   try {
     const { id_product } = req.params;
-    const { name, description, price, stars } = req.body;
+    const { name, description, price, off, rating, reviewCount } = req.body;
 
     const product = await Product.findById(id_product);
 
@@ -20,7 +20,9 @@ const updateProduct = async (req, res) => {
           name,
           description,
           price,
-          stars,
+          off,
+          rating, 
+          reviewCount,
           imageURL: imageSaved.secure_url,
           public_id: imageSaved.public_id,
         },

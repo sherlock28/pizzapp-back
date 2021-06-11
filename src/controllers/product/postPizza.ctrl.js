@@ -3,7 +3,7 @@ const { Product } = require("../../models");
 const fs = require("fs-extra");
 
 const postProduct = async (req, res) => {
-  const { name, description, price, stars } = req.body;
+  const { name, description, price, off, rating, reviewCount } = req.body;
 
   try {
     const result = await cloudinary.uploader.upload(req.file.path);
@@ -12,7 +12,9 @@ const postProduct = async (req, res) => {
       name,
       description,
       price,
-      stars,
+      off,
+      rating,
+      reviewCount,
       imageURL: result.secure_url,
       public_id: result.public_id,
     });

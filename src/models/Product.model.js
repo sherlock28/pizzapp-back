@@ -4,7 +4,9 @@ const ProductSchema = new Schema({
   name: String,
   description: String,
   price: Number,
-  stars: Number,
+  off: Number,
+  rating: Number,
+  reviewCount: Number,
   imageURL: String,
   public_id: String,
 });
