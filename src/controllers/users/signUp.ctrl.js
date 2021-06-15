@@ -1,15 +1,11 @@
 const { User } = require("../../models");
-const { encryptPassword } = require("../../libs");
+const { encryptPassword, generateHash, createMailToVerifyAccount } = require("../../libs");
 const transporter = require("../../config/mailer");
 
 const signUp = async (req, res) => {
   const { fullname, username, email, password } = req.body;
 
-  const hash = require("crypto")
-    .createHash("sha256")
-    .update(`${fullname}+${username}+${email}`)
-    .digest("hex");
-
+  const hash = generateHash({ fullname, username, email });
 
   const newUser = new User({
     fullname,
@@ -26,12 +22,7 @@ const signUp = async (req, res) => {
     newUser.password = await encryptPassword(newUser.password);
     const savedUser = await newUser.save();
 
-    const html = `<b>Hello ${fullname}</b>, 
-    <p>Thanks for signing up in Pizzapp!
-    Your account has been created, you have activated your account by pressing the url below.</p>
-    <br/>
-    <p>Please click this link to activate your account:</p>
-    <a href="http://localhost:4000/api/v1/verify?email=${email}&hash=${hash}">Click here </a>`;
+    const html = createMailToVerifyAccount({ fullname, email, hash });
 
     await transporter.sendMail({
       from: '"Registered" <caceresrodolfo28@gmail.com>',
@@ -39,7 +30,6 @@ const signUp = async (req, res) => {
       subject: "Signup | Verification ✔",
       html,
     });
-
 
     res.status(201).json({
       status: "Ok",
