@@ -7,6 +7,8 @@ const UserSchema = new Schema({
   phone: String,
   password: String,
   token: String,
+  isMailConfirmed: { type: Boolean, default: false },
+  tokenConfirmMail: String
 });
 
 module.exports = model("User", UserSchema);
