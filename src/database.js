@@ -9,7 +9,7 @@ mongoose
   .connect(process.env.DATABASE, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useFindAndModify: true,
+    useFindAndModify: false,
   })
   .then(db => console.log("db is connected to", db.connection.name))
   .catch(err => {
