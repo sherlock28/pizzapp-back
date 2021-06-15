@@ -1,6 +1,6 @@
 const { User } = require("../../models");
 const { encryptPassword, generateHash, createMailToVerifyAccount } = require("../../libs");
-const transporter = require("../../config/mailer");
+const { transporter } = require("../../config");
 
 const signUp = async (req, res) => {
   const { fullname, username, email, password } = req.body;
@@ -25,7 +25,7 @@ const signUp = async (req, res) => {
     const html = createMailToVerifyAccount({ fullname, email, hash });
 
     await transporter.sendMail({
-      from: '"Registered" <caceresrodolfo28@gmail.com>',
+      from: '"Pizzapp" <caceresrodolfo28@gmail.com>',
       to: email,
       subject: "Signup | Verification ✔",
       html,

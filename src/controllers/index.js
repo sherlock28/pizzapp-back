@@ -10,5 +10,6 @@ module.exports = {
     signUp: require("./users/signUp.ctrl"),
     signIn: require("./users/signIn.ctrl"),
     signOut: require("./users/signOut.ctrl"),
+    verifyMail: require("./users/vefiryMail.ctrl"),
   },
 };
