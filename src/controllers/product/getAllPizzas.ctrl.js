@@ -3,7 +3,7 @@ const { Product } = require("../../models");
 const getAllProducts = async (req, res) => {
   try {
     const products = await Product.find().lean();
-    res.json({
+    res.status(200).json({
       status: "Ok",
       message: "List of all products",
       data: {
