@@ -5,4 +5,7 @@ module.exports = {
   users: {
     fieldUserValidation: require("./users/fieldUserValidation.mdw"),
   },
+  errors: {
+    handleError: require("./errors/handleErrors.mdw"),
+  }
 };
