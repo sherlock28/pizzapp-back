@@ -30,9 +30,7 @@ if (process.env.NODE_ENV === "development") {
 // routes
 app.use("/api/v1", require("./routes/product.routes"));
 app.use("/api/v1", require("./routes/user.routes"));
-app.use((req, res) => {
-  res.status(404).send("<h1>Path not found.</h1>");
-});
-app.use(require("./middlewares/").errors.handleError);
+app.use(require("./middlewares").errors.notFound);
+app.use(require("./middlewares").errors.handleError);
 
 module.exports = app;

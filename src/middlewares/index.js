@@ -7,5 +7,6 @@ module.exports = {
   },
   errors: {
     handleError: require("./errors/handleErrors.mdw"),
+    notFound: require("./errors/notFound404.mdw"),
   }
 };
