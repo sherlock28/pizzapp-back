@@ -1,6 +1,13 @@
 const { User } = require("../../models");
 const jwt = require("jsonwebtoken");
 
+/**
+ * This middleware check if the token is valid
+ * @param {Request} req 
+ * @param {Response} res 
+ * @param {function} next 
+ * @returns {Response || function} Respond a json if the token is invalid or the execution of next if the token is valid
+ */
 const tokenValidation = async (req, res, next) => {
   /*Se obtiene el token enviado */
   const token = req.header("Authorization");
@@ -28,7 +35,7 @@ const tokenValidation = async (req, res, next) => {
       });
     }
 
-    next();
+    next(); /* El si el token es valido se ejecuta next() */
   } catch (err) {
     return res.status(401).json({
       status: "Denied",
