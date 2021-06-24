@@ -16,6 +16,10 @@ const UserSchema = new Schema({
       delete returnedObject._id;
       delete returnedObject.__v;
       delete returnedObject.password;
+      delete returnedObject.phone;
+      delete returnedObject.token;
+      delete returnedObject.isMailConfirmed;
+      delete returnedObject.tokenConfirmMail;
     }
   }
 });
