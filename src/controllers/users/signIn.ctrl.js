@@ -38,7 +38,8 @@ const signIn = async (req, res) => {
         .json({
           status: "Ok",
           message: "You are logged in",
-          token
+          token,
+          user
         });
     } else {
       res.status(403).json({
