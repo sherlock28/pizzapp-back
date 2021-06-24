@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const signIn = async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
   if (user === null) {
-    res.status(400).json({
+    res.status(403).json({
       status: "Error",
       message: "Invalid credentials",
     });
@@ -30,7 +30,7 @@ const signIn = async (req, res) => {
       await User.findOneAndUpdate(query, { token: token });
 
       res
-        .status(200)
+        .status(202)
         .header({
           Authorization: token,
           "Access-Control-Expose-Headers": "Authorization",
@@ -41,7 +41,7 @@ const signIn = async (req, res) => {
           token
         });
     } else {
-      res.status(400).json({
+      res.status(403).json({
         status: "Error",
         message: "Invalid credentials",
       });
