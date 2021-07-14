@@ -22,3 +22,5 @@ const postOrder = async (req, res) => {
     res.status(500).json({ status: "Error", message: "Internal server error" });
   }
 };
+
+module.exports = postOrder;

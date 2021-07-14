@@ -30,6 +30,7 @@ if (process.env.NODE_ENV === "development") {
 // routes
 app.use("/api/v1", require("./routes/product.routes"));
 app.use("/api/v1", require("./routes/user.routes"));
+app.use("/api/v1", require("./routes/order.routes"));
 app.use(require("./middlewares").errors.notFound);
 app.use(require("./middlewares").errors.handleError);
 

@@ -12,4 +12,7 @@ module.exports = {
     signOut: require("./user/signOut.ctrl"),
     verifyMail: require("./user/vefiryMail.ctrl"),
   },
+  orderCtrl: {
+    postOrder: require("./order/postOrder.ctrl"),
+  },
 };
