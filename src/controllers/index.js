@@ -14,5 +14,6 @@ module.exports = {
   },
   orderCtrl: {
     postOrder: require("./order/postOrder.ctrl"),
+    getOrdersByUser: require("./order/getOrdersByUser.ctrl"),
   },
 };
