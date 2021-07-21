@@ -4,6 +4,6 @@ const { orderCtrl } = require("../controllers");
 
 router.post("/order", orderCtrl.postOrder);
 router.get("/order", orderCtrl.getOrdersByUser);
-// router.get("/order/:id",  orderCtrl.);
+router.get("/order/:id", orderCtrl.getOrderById);
 
 module.exports = router;
