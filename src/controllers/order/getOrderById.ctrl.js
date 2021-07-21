@@ -1,10 +1,10 @@
 const { Order } = require("../../models");
 
 const getOrdersById = async (req, res) => {
-  const { orderId } = req.body;
+  const { order_id } = req.params;
 
   try {
-    const order = await Order.find({ _id: orderId }).populate("products", {
+    const order = await Order.findById(order_id).populate("products", {
       name: 1,
       price: 1,
       imageURL: 1,

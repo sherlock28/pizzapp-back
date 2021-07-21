@@ -1,10 +1,10 @@
 const { Order } = require("../../models");
 
 const postOrder = async (req, res) => {
-  const { userId, products } = req.body;
+  const { user_id, products } = req.body;
 
   const newOrder = Order({
-    user: userId,
+    user: user_id,
     products,
   });
 
