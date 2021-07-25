@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const multer = require("multer");
+const networkInterfaces = require("os").networkInterfaces();
 
 // initializations
 const app = express();
@@ -10,6 +11,9 @@ require("./database");
 
 // settings
 app.set("port", process.env.PORT || 4000);
+if (process.env.NODE_ENV === "development")
+  process.env.APP_DOMAIN =
+    networkInterfaces.wlp4s0[0].address + ":" + process.env.PORT;
 
 // middlewares
 app.use(cors());
