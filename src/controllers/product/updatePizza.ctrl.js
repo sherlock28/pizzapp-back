@@ -9,9 +9,15 @@ const updateProduct = async (req, res) => {
 
     const product = await Product.findById(id_product);
 
-    const deleteResult = await cloudinary.uploader.destroy(product.public_id);
+    const deleteResult = await cloudinary.uploader.destroy(product.public_id, {
+      folder: process.env.CLOUDINARY_FOLDER,
+    });
 
-    const imageSaved = await cloudinary.uploader.upload(req.file.path);
+    const imageSaved = await cloudinary.uploader.upload(req.file.path, {
+      resource_type: "image",
+      folder: process.env.CLOUDINARY_FOLDER,
+      overwrite: true,
+  });
 
     const productUpdated = await Project.findByIdAndUpdate(
       { _id: id_product },

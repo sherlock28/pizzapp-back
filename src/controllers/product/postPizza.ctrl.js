@@ -6,7 +6,11 @@ const postProduct = async (req, res) => {
   const { name, description, price, rating, reviewCount } = req.body;
 
   try {
-    const result = await cloudinary.uploader.upload(req.file.path);
+    const result = await cloudinary.uploader.upload(req.file.path, {
+        resource_type: "image",
+        folder: process.env.CLOUDINARY_FOLDER,
+        overwrite: true,
+    });
 
     const newProduct = Product({
       name,

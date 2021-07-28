@@ -7,7 +7,9 @@ const deleteProduct = async (req, res) => {
 
     const product = await Product.findByIdAndRemove(id_product);
 
-    const result = await cloudinary.uploader.destroy(product.public_id);
+    const result = await cloudinary.uploader.destroy(product.public_id, {
+      folder: process.env.CLOUDINARY_FOLDER,
+    });
 
     res.json({ status: "Ok", message: "Product successfully deleted" });
   } catch (err) {
