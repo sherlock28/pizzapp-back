@@ -1,7 +1,8 @@
 const { User } = require("../../models");
 
 const signOut = async (req, res) => {
-  const token = req.header("Authorization");
+  const authorization = req.header("Authorization");
+  const token = authorization.split(" ")[1];
   const query = { token: token };
 
   const user = await User.findOne(query);
