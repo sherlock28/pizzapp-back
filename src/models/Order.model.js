@@ -1,21 +1,42 @@
 const { Schema, model } = require("mongoose");
 
+const ItemSchema = new Schema(
+  {
+    productId: {
+      type: Schema.Types.ObjectId,
+      ref: "Product",
+      required: true,
+    },
+    quantity: {
+      type: Number,
+      required: true,
+      min: [1, "Quantity must be greater than 0"],
+    },
+    price: {
+      type: Number,
+      required: true,
+    },
+    total: {
+      type: Number,
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
 const OrderSchema = new Schema(
   {
-    date: { type: Date, default: Date.now },
     user: {
       type: Schema.Types.ObjectId,
       ref: "User",
     },
-    products: [
-      {
-        id: {
-          type: Schema.Types.ObjectId,
-          ref: "Product",
-        },
-        count: { type: Number, default: 1 },
-      },
-    ],
+    items: [ItemSchema],
+    subTotal: {
+      default: 0,
+      type: Number,
+    },
   },
   {
     toJSON: {
@@ -29,3 +50,4 @@ const OrderSchema = new Schema(
 );
 
 module.exports = model("Order", OrderSchema);
+
