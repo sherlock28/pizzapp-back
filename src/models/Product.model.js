@@ -2,13 +2,19 @@ const { model, Schema } = require("mongoose");
 
 const ProductSchema = new Schema(
   {
-    name: String,
-    description: String,
-    price: Number,
+    name: { type: String, required: [true, "Please Include the product name"] },
+    description: {
+      type: String,
+      required: [true, "Please Include the product description"],
+    },
+    price: {
+      type: Number,
+      required: [true, "Please Include the product price"],
+    },
     off: Number,
     rating: Number,
     reviewCount: Number,
-    imageURL: String,
+    imageURL: { type: String, required: true },
     public_id: String,
   },
   {
