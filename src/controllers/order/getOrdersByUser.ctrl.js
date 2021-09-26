@@ -1,10 +1,10 @@
 const { Order } = require("../../models");
 
 const getOrdersByUser = async (req, res) => {
-  const { user_id } = req.body;
+  const { id } = req.body;
 
   try {
-    const orders = await Order.find({ user: user_id }).populate("products", {
+    const orders = await Order.find({ user: id }).populate("products", {
       name: 1,
       price: 1,
       imageURL: 1,
