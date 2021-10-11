@@ -1,9 +1,9 @@
-const { Product } = require("../../models");
+const productRepository = require("../../repository/product.repo");
 
 const getProductById = async (req, res, next) => {
   try {
     const { id_product } = req.params;
-    const product = await Product.findById(id_product);
+    const product = await productRepository.productById(id_product);
 
     if (product) {
       res.json({
@@ -15,7 +15,7 @@ const getProductById = async (req, res, next) => {
       });
     } else {
       res.status(404).json({
-        status: "Error 404",
+        status: "Error",
         message: "Product not found",
       });
     }
