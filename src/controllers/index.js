@@ -1,10 +1,10 @@
 module.exports = {
   productCtrl: {
-    getAllPizzas: require("./product/getAllPizzas.ctrl"),
-    getPizzaById: require("./product/getPizzaById.ctrl"),
-    postPizza: require("./product/postPizza.ctrl"),
-    deleteProduct: require("./product/deletePizza.ctrl"),
-    updateProduct: require("./product/updatePizza.ctrl"),
+    getAllProduct: require("./product/getAllProduct.ctrl"),
+    getProductById: require("./product/getProductById.ctrl"),
+    postProduct: require("./product/postProduct.ctrl"),
+    deleteProduct: require("./product/deleteProduct.ctrl"),
+    updateProduct: require("./product/updateProduct.ctrl"),
   },
   usersCtrl: {
     signUp: require("./user/signUp.ctrl"),
