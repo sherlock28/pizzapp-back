@@ -12,6 +12,10 @@ exports.createProduct = async (payload) => {
   const newProduct = await Product.create(payload);
   return newProduct;
 };
+exports.updateProduct = async (id, payload) => {
+  const productUpdated = await Product.findByIdAndUpdate({ _id: id }, { $set: payload }, { new: true });
+  return productUpdated;
+};
 exports.removeProduct = async (id) => {
   const product = await Product.findByIdAndRemove(id);
   return product;

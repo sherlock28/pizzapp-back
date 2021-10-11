@@ -1,5 +1,5 @@
 const { cloudinary } = require("../../config");
-const { Product } = require("../../models");
+const productRepository = require("../../repository/product.repo");
 const fs = require("fs-extra");
 
 const updateProduct = async (req, res) => {
@@ -7,7 +7,7 @@ const updateProduct = async (req, res) => {
     const { id_product } = req.params;
     const { name, description, price, off, rating, reviewCount } = req.body;
 
-    const product = await Product.findById(id_product);
+    const product = await productRepository.productById(id_product);
 
     const deleteResult = await cloudinary.uploader.destroy(product.public_id, {
       folder: process.env.CLOUDINARY_FOLDER,
@@ -17,23 +17,22 @@ const updateProduct = async (req, res) => {
       resource_type: "image",
       folder: process.env.CLOUDINARY_FOLDER,
       overwrite: true,
-  });
+    });
 
-    const productUpdated = await Project.findByIdAndUpdate(
-      { _id: id_product },
-      {
-        $set: {
-          name,
-          description,
-          price,
-          off,
-          rating, 
-          reviewCount,
-          imageURL: imageSaved.secure_url,
-          public_id: imageSaved.public_id,
-        },
-      },
-      { new: true }
+    const payload = {
+      name,
+      description,
+      price,
+      off,
+      rating,
+      reviewCount,
+      imageURL: imageSaved.secure_url,
+      public_id: imageSaved.public_id,
+    };
+
+    const productUpdated = await productRepository.updateProduct(
+      id_product,
+      payload
     );
 
     await fs.unlink(req.file.path);
@@ -47,7 +46,7 @@ const updateProduct = async (req, res) => {
     });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ status: "Error", message: "Internal server error" });
+    res.status(500).json({ status: "Error", message: "Product could not be updated" });
   }
 };
 
