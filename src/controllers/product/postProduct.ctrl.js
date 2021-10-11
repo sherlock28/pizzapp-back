@@ -1,5 +1,5 @@
 const { cloudinary } = require("../../config");
-const { Product } = require("../../models");
+const productRepository = require("../../repository/product.repo");
 const fs = require("fs-extra");
 
 const postProduct = async (req, res) => {
@@ -7,12 +7,12 @@ const postProduct = async (req, res) => {
 
   try {
     const result = await cloudinary.uploader.upload(req.file.path, {
-        resource_type: "image",
-        folder: process.env.CLOUDINARY_FOLDER,
-        overwrite: true,
+      resource_type: "image",
+      folder: process.env.CLOUDINARY_FOLDER,
+      overwrite: true,
     });
 
-    const newProduct = Product({
+    const payload = {
       name,
       description,
       price,
@@ -21,9 +21,9 @@ const postProduct = async (req, res) => {
       reviewCount,
       imageURL: result.secure_url,
       public_id: result.public_id,
-    });
+    };
 
-    const productSaved = await newProduct.save();
+    const productSaved = await productRepository.createProduct(payload);
 
     await fs.unlink(req.file.path);
 
@@ -35,7 +35,9 @@ const postProduct = async (req, res) => {
       },
     });
   } catch (err) {
-    res.status(500).json({ status: "Error", message: "Internal server error" });
+    res
+      .status(500)
+      .json({ status: "Error", message: "Product could not be created" });
   }
 };
 
