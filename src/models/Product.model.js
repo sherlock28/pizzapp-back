@@ -11,11 +11,11 @@ const ProductSchema = new Schema(
       type: Number,
       required: [true, "Please Include the product price"],
     },
-    off: Number,
+    off: { type: Number, default: 0 },
     rating: Number,
-    reviewCount: Number,
+    reviewCount: { type: Number, default: 0 },
     imageURL: { type: String, required: true },
-    public_id: String,
+    public_id: { type: String, required: true },
   },
   {
     toJSON: {
