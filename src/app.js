@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const multerConfig = require("./config/multer");
+const { multer } = require("./config");
 const ip = require("ip");
 
 // initializations
@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === "development")
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(multerConfig);
+app.use(multer);
 
 if (process.env.NODE_ENV === "development") {
   app.use(require("morgan")("dev"));
