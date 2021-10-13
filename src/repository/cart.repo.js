@@ -12,3 +12,8 @@ exports.addItem = async (payload) => {
   const newItem = await Cart.create(payload);
   return newItem;
 };
+
+exports.removeItem = async id => {
+  const cart = await Cart.findByIdAndRemove(id);
+  return cart;
+}
