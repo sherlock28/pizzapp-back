@@ -1,11 +1,11 @@
 const { Cart } = require("../models");
 
-exports.cart = async () => {
-  const carts = await Cart.find().populate({
+exports.getCartByUserId = async (id) => {
+  const cart = await Cart.findOne({user: id}).populate({
     path: "items.productId",
     select: "name price total",
   });
-  return carts[0];
+  return cart;
 };
 
 exports.addItem = async (payload) => {
