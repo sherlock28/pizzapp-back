@@ -12,4 +12,8 @@ module.exports = {
     signOut: require("./user/signOut.ctrl"),
     verifyMail: require("./user/vefiryMail.ctrl"),
   },
+  cartCtrl: {
+    addItemToCart: require("./cart/addItemToCart.ctrl"),
+    removeItemFromCart: require("./cart/removeItemFromCart.ctrl"),
+  },
 };
