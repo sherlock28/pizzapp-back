@@ -13,6 +13,7 @@ module.exports = {
     verifyMail: require("./user/vefiryMail.ctrl"),
   },
   cartCtrl: {
+    getCartByUserId: require("./cart/getCartByUserId.ctrl"),
     addItemToCart: require("./cart/addItemToCart.ctrl"),
     removeItemFromCart: require("./cart/removeItemFromCart.ctrl"),
   },
