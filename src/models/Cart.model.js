@@ -16,7 +16,7 @@ const ItemSchema = new Schema(
       type: Number,
       required: true,
     },
-    total: {
+    subtotal: {
       type: Number,
       required: true,
     },
@@ -33,7 +33,7 @@ const CartSchema = new Schema(
       ref: "User",
     },
     items: [ItemSchema],
-    subTotal: {
+    total: {
       default: 0,
       type: Number,
     },
