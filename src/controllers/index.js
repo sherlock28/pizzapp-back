@@ -14,7 +14,7 @@ module.exports = {
   },
   cartCtrl: {
     getCartByUserId: require("./cart/getCartByUserId.ctrl"),
-    addItemToCart: require("./cart/addItemToCart.ctrl"),
+    addItemsToCart: require("./cart/addItemsToCart.ctrl"),
     removeItemFromCart: require("./cart/removeItemFromCart.ctrl"),
   },
 };
