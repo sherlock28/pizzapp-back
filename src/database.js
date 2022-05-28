@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const logger = require("./config/logger");
 
 const DB =
   process.env.NODE_ENV === "development"
@@ -11,16 +12,16 @@ mongoose
     useUnifiedTopology: true,
     useFindAndModify: false,
   })
-  .then((db) => console.log("db is connected to", db.connection.name))
+  .then((db) => logger.info(`db is connected to ${db.connection.name}`))
   .catch((err) => {
-    console.error(err);
-    console.error("database connection failed");
+    logger.error(err);
+    logger.error("database connection failed");
   });
 
 function cleanup() {
   mongoose.connection.close(function () {
-    console.log("\nMongoose default connection disconnected through app termination");
-    console.log("\nGoodbye!");
+    logger.info("\nMongoose default connection disconnected through app termination");
+    logger.info("\nGoodbye!");
     process.exit(0);
   });
 }

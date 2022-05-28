@@ -1,16 +1,12 @@
 const { createLogger, format, transports } = require('winston');
 
 module.exports = createLogger({
-    level: 'info',
+    format: format.combine(
+        format.simple(),
+        format.timestamp(),
+        format.printf(info => `[${info.timestamp}] | ${info.level.toLocaleUpperCase()} | ${info.message}`)
+    ),
     transports: [
-        new transports.Console({
-            format: format.combine(
-                format.colorize(),
-                format.timestamp({
-                    format: 'YYYY-MM-DD HH:mm:ss'
-                }),
-                format.simple(),
-            )
-        })
+        new transports.Console({level: 'debug'}),
     ]
 });
