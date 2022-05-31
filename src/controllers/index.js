@@ -17,4 +17,7 @@ module.exports = {
     addItemsToCart: require("./cart/addItemsToCart.ctrl"),
     removeItemFromCart: require("./cart/removeItemFromCart.ctrl"),
   },
+  healthCtrl: {
+    healthCheck: require("./health/healthCheck.ctrl"),
+  },
 };
