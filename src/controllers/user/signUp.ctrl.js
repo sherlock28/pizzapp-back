@@ -1,6 +1,7 @@
 const { User } = require("../../models");
 const { encryptPassword, generateHash, createMailToVerifyAccount } = require("../../libs");
 const { transporter } = require("../../config");
+const status = require("../../const/statusCode");
 
 const signUp = async (req, res) => {
   const { fullname, username, email, password } = req.body;
@@ -31,13 +32,13 @@ const signUp = async (req, res) => {
       html,
     });
 
-    res.status(201).json({
+    res.status(status.CREATED).json({
       status: "Ok",
       message: "Registered",
       user: savedUser,
     });
   } else {
-    res.status(400).json({
+    res.status(status.BAD_REQUEST).json({
       status: "Error",
       message: "The email is already in use",
     });

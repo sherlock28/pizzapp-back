@@ -1,4 +1,5 @@
 const { User } = require("../../models");
+const status = require("../../const/statusCode");
 
 const verifyMail = async (req, res) => {
   const { email, hash } = req.query;
@@ -8,7 +9,7 @@ const verifyMail = async (req, res) => {
   }).lean();
 
   if (user === null) {
-    res.status(400).send("<h4>Invalid URL</h4>");
+    res.status(status.BAD_REQUEST).send("<h4>Invalid URL</h4>");
   } else {
     const { _id } = user[0];
 
@@ -22,7 +23,7 @@ const verifyMail = async (req, res) => {
       { new: true }
     );
 
-    res.status(200).send("<h2>Your account is verified</h2>");
+    res.status(status.OK).send("<h2>Your account is verified</h2>");
   }
 };
 

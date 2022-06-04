@@ -1,4 +1,5 @@
 const { User } = require("../../models");
+const status = require("../../const/statusCode");
 
 const signOut = async (req, res) => {
   const authorization = req.header("Authorization");
@@ -8,10 +9,10 @@ const signOut = async (req, res) => {
   const user = await User.findOne(query);
 
   if (user === null) {
-    res.status(403).json({ status: "Error", message: "Invalid token" });
+    res.status(status.FORBIDDEN).json({ status: "Error", message: "Invalid token" });
   } else {
     await User.findOneAndUpdate(query, { $unset: { token: 1 } });
-    res.status(200).json({ status: "Ok", message: "Is logged out" });
+    res.status(status.OK).json({ status: "Ok", message: "Is logged out" });
   }
 };
 
