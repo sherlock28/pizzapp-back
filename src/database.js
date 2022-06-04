@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const logger = require("./config/logger");
 
-const DB =
+const connStr =
   process.env.NODE_ENV === "development"
     ? process.env.DATABASE_DOCKER
     : process.env.DATABASE;

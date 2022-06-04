@@ -6,6 +6,7 @@
 NODE_ENV=development
 PORT=4000
 SECRET_KEY=your_key_jsonwebtoken
+EXPIRES_IN=86400
 DATABASE=mongodb://localhost/your_db
 CLOUDINARY_CLOUD_NAME=your_cloudinary_name
 CLOUDINARY_API_KEY=your_cloudinary_api_key
