@@ -1,11 +1,12 @@
 const { User } = require("../../models");
 const { validatePassword } = require("../../libs");
 const jwt = require("jsonwebtoken");
+const status = require("../../const/statusCode");
 
 const signIn = async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
   if (user === null) {
-    res.status(403).json({
+    res.status(status.FORBIDDEN).json({
       status: "Error",
       message: "Invalid credentials",
     });
@@ -23,14 +24,14 @@ const signIn = async (req, res) => {
           email: user.email,
         },
         process.env.SECRET_KEY,
-        { expiresIn: 86400 }
+        { expiresIn: process.env.EXPIRES_IN ?? 86000 }
       );
 
       const query = { email: user.email };
       await User.findOneAndUpdate(query, { token: token });
 
       res
-        .status(202)
+        .status(status.ACCEPTED)
         .header({
           Authorization: token,
           "Access-Control-Expose-Headers": "Authorization",
@@ -42,7 +43,7 @@ const signIn = async (req, res) => {
           user
         });
     } else {
-      res.status(403).json({
+      res.status(status.FORBIDDEN).json({
         status: "Error",
         message: "Invalid credentials",
       });
