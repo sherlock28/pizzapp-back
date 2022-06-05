@@ -7,6 +7,7 @@ const ip = require("ip");
 // initializations
 const app = express();
 require("./database");
+
 // settings
 app.set("port", process.env.PORT || 4000);
 if (process.env.NODE_ENV === "development")
@@ -20,6 +21,8 @@ app.use(multer);
 
 if (process.env.NODE_ENV === "development") {
   app.use(require("morgan")("dev"));
+  const swaggerSpec = require("./config/swagger");
+  app.use("/api/v1/doc", require("swagger-ui-express").serve, require("swagger-ui-express").setup(require("swagger-jsdoc")(swaggerSpec)));
 }
 
 // routes
