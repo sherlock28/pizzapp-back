@@ -1,5 +1,6 @@
 const { cloudinary } = require("../../config");
 const productRepository = require("../../repository/product.repo");
+const status = require("../../const/statusCode");
 
 const deleteProduct = async (req, res) => {
   try {
@@ -11,10 +12,10 @@ const deleteProduct = async (req, res) => {
       folder: process.env.CLOUDINARY_FOLDER,
     });
 
-    res.json({ status: "Ok", message: "Product successfully deleted" });
+    res.status(status.OK).json({ status: "Ok", message: "Product successfully deleted" });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ status: "Error", message: "Product could not be removed" });
+    res.status(status.INTERNAL_SERVER_ERROR).json({ status: "Error", message: "Product could not be removed" });
   }
 };
 

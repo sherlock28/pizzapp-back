@@ -1,6 +1,7 @@
 const { cloudinary } = require("../../config");
 const productRepository = require("../../repository/product.repo");
 const fs = require("fs-extra");
+const status = require("../../const/statusCode");
 
 const updateProduct = async (req, res) => {
   try {
@@ -37,7 +38,7 @@ const updateProduct = async (req, res) => {
 
     await fs.unlink(req.file.path);
 
-    res.json({
+    res.status(status.OK).json({
       status: "Ok",
       message: "Updated product",
       data: {
@@ -46,7 +47,7 @@ const updateProduct = async (req, res) => {
     });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ status: "Error", message: "Product could not be updated" });
+    res.status(status.INTERNAL_SERVER_ERROR).json({ status: "Error", message: "Product could not be updated" });
   }
 };
 

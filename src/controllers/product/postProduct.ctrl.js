@@ -1,6 +1,7 @@
 const { cloudinary } = require("../../config");
 const productRepository = require("../../repository/product.repo");
 const fs = require("fs-extra");
+const status = require("../../const/statusCode");
 
 const postProduct = async (req, res) => {
   const { name, description, price, rating, reviewCount } = req.body;
@@ -27,7 +28,7 @@ const postProduct = async (req, res) => {
 
     await fs.unlink(req.file.path);
 
-    res.status(201).json({
+    res.status(status.CREATED).json({
       status: "Ok",
       message: "Product successfully added",
       data: {
@@ -36,7 +37,7 @@ const postProduct = async (req, res) => {
     });
   } catch (err) {
     res
-      .status(500)
+      .status(status.INTERNAL_SERVER_ERROR)
       .json({ status: "Error", message: "Product could not be created" });
   }
 };

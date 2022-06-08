@@ -1,4 +1,5 @@
 const productRepository = require("../../repository/product.repo");
+const status = require("../../const/statusCode");
 
 const getProductById = async (req, res, next) => {
   try {
@@ -14,7 +15,7 @@ const getProductById = async (req, res, next) => {
         },
       });
     } else {
-      res.status(404).json({
+      res.status(status.NOT_FOUND).json({
         status: "Error",
         message: "Product not found",
       });
